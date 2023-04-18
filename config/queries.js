@@ -20,9 +20,21 @@ function getAllRoles(callback) {
         callback(null, results);
       }
     });
-  }
+};
+
+function getAllEmployees(callback) {
+    const query = `SELECT CONCAT(first_name, ' ', last_name) AS employee_name FROM employee;`;
+    connection.query(query, (error, results) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+  };
   
 module.exports = {
     getAllDepartments,
-    getAllRoles
+    getAllRoles,
+    getAllEmployees
 };

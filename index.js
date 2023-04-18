@@ -3,7 +3,8 @@ const inquirer = require("inquirer");
 
 const {
     getAllDepartments,
-    getAllRoles
+    getAllRoles,
+    getAllEmployees
 } = require("./config/queries");
 
 inquirer
@@ -14,7 +15,7 @@ inquirer
         choices: [
             "View all departments",
             "View all roles",
-            // "View all employees",
+            "View all employees",
             // "Add a department",
             // "Add a role",
             // "Add an employee",
@@ -42,9 +43,15 @@ inquirer
                 }
               });
             break;
-        // case "View all employees":
-
-        //     break;
+        case "View all employees":
+            getAllEmployees((err, results) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.table(results);
+                }
+              });
+            break;
         // case "Add a department":
 
         //     break;
