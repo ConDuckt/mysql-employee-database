@@ -1,7 +1,10 @@
 require("dotenv").config();
 const inquirer = require("inquirer");
 
-const { getAllDepartments } = require("./config/queries");
+const {
+    getAllDepartments,
+    getAllRoles
+} = require("./config/queries");
 
 inquirer
     .prompt({
@@ -10,7 +13,7 @@ inquirer
         message: "What would you like to do?",
         choices: [
             "View all departments",
-            // "View all roles",
+            "View all roles",
             // "View all employees",
             // "Add a department",
             // "Add a role",
@@ -23,16 +26,22 @@ inquirer
         switch (answer.action) {
         case "View all departments":
             getAllDepartments((err, results) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.table(results);
-            }
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.table(results);
+                }
             });
             break;
-        // case "View all roles":
-
-        //     break;
+        case "View all roles":
+            getAllRoles((err, results) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  console.table(results);
+                }
+              });
+            break;
         // case "View all employees":
 
         //     break;
