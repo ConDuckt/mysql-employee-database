@@ -4,7 +4,8 @@ const inquirer = require("inquirer");
 const {
     getAllDepartments,
     getAllRoles,
-    getAllEmployees
+    getAllEmployees,
+    addDepartment
 } = require("./config/queries");
 
 inquirer
@@ -16,7 +17,7 @@ inquirer
             "View all departments",
             "View all roles",
             "View all employees",
-            // "Add a department",
+            "Add a department",
             // "Add a role",
             // "Add an employee",
             // "Update an employee role",
@@ -52,9 +53,23 @@ inquirer
                 }
               });
             break;
-        // case "Add a department":
-
-        //     break;
+        case "Add a department":
+            inquirer
+            .prompt({
+              type: "input",
+              name: "departmentName",
+              message: "Enter a name for the new department:",
+            })
+            .then(answer => {
+                addDepartment(answer.departmentName, (err, result) => {
+                        if (err) {
+                        console.log(err);
+                        } else {
+                        console.log(`New department ${answer.departmentName} added successfully!`);
+                        };
+                });
+            });
+            break;
         // case "Add a role":
 
         //     break;
